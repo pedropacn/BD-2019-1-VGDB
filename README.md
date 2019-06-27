@@ -1,30 +1,32 @@
 # VGBD
 
+Para rodar esse projeto na sua máquina, você vai precisar do Python 3 instalado.
+
 ## Banco de dados
 
-popular o banco MySQL com o arquivo .sql.
-
-pode ser necessario configurar o usuario do banco de dados, na pasta database.
+Popular o banco MySQL com o arquivo .sql.
+Pode ser necessário configurar o usuário do banco de dados, no diretório:  `app/database/database.py`
 
 ## Bibliotecas
 
-'''
+Para instalar as dependências necessárias, execute o comando:
+
+```bash
 pip install -r requirements.txt
-'''
+```
 
 ## Server
 
-Para rodar o programa esteja na pasta raiz.
+Para iniciar o servidor `Flask` esteja na pasta raiz,
+adicione as seguintes variáveis de ambiente:
 
-Adicione as variaveis de ambiente
-
-'''
+```bash
 export FLASK_CONFIG=development
 export FLASK_APP=run.py
-'''
+```
 
 Execute
 
-'''
+```bash
 flask run
-'''
+```
