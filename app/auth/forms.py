@@ -24,10 +24,12 @@ class RegistrationForm(FlaskForm):
 
     def validate_email(self, field):
         user = User()
-        # if Employee.query.filter_by(email=field.data).first():
         if user.filter_by(email=field.data):
             raise ValidationError('Email is already in use.')
 
+class ProfileForm(RegistrationForm):
+    def validate_email(self, field):
+        pass
 
 class LoginForm(FlaskForm):
     """

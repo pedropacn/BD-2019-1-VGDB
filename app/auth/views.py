@@ -1,8 +1,8 @@
-from flask import flash, redirect, render_template, url_for
-from flask_login import login_required, login_user, logout_user
+from flask import flash, redirect, render_template, url_for, session
+from flask_login import login_required, login_user, logout_user, current_user
 
 from . import auth
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ProfileForm
 
 from app.models import User
 
@@ -13,6 +13,9 @@ def register():
     Handle requests to the /register route
     Add an employee to the database through the registration form
     """
+
+    profile = False
+
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User()
@@ -79,3 +82,39 @@ def logout():
 
     # redirect to the login page
     return redirect(url_for('auth.login'))
+
+@auth.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+
+    profile = True
+
+    cur = User()
+    user = cur.select(current_user.id)
+    user['password'] = ''
+    try:
+        form = ProfileForm(obj=user)
+    except:
+        print('cant find user.')
+
+    if form.validate_on_submit():
+        user["email"] = form.email.data
+        user["username"] = form.username.data
+        user["first_name"] = form.first_name.data
+        user["last_name"] = form.last_name.data
+        user["password"] =  cur.password_hash(form.password.data)
+        cur.update(**user)
+
+        flash('You have successfully edited the profile.')
+
+        # redirect to the departments page
+        return redirect(url_for('dog.index'))
+    
+    form.email.data = user["email"]
+    form.username.data = user["username"]
+    form.first_name.data = user["first_name"]
+    form.last_name.data = user["last_name"]
+
+    return render_template('auth/register.html', action="Edit",
+    profile=profile, form=form,
+    user=user, title="Profile")
