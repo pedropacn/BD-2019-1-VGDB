@@ -20,7 +20,7 @@ class RegistrationForm(FlaskForm):
                                         EqualTo('confirm_password')
                                         ])
     confirm_password = PasswordField('Confirm Password')
-    submit = SubmitField('Register')
+    submit = SubmitField('Submit')
 
     def validate_email(self, field):
         user = User()

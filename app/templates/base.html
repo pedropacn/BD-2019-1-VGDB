@@ -52,13 +52,17 @@
                         <li class="footer-menu-divider">⋅</li>
                         {% if current_user.is_authenticated %}
                         <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            {% if profile %}
+                            <li class="footer-menu-divider">⋅</li>
+                            <li><a href="{{ url_for('auth.delete_user',id=current_user.id) }}">Delete User</a></li>
+                            {% endif %}
                         {% else %}
                         <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                         <li class="footer-menu-divider">⋅</li>
                         <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                         {% endif %}
                     </ul>
-                    <p class="copyright text-muted small">Copyright © 2016. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright © 2019. All Rights Reserved</p>
                 </div>
             </div>
         </div>

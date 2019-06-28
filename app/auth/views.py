@@ -118,3 +118,19 @@ def profile():
     return render_template('auth/register.html', action="Edit",
     profile=profile, form=form,
     user=user, title="Profile")
+
+@auth.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_user(id):
+    user = User()
+    try:
+        user.delete(id)
+        flash('You have successfully deleted the user.')
+    except:
+        print("Cant delete user.")
+
+    logout_user()
+    # redirect to the departments page
+    return redirect(url_for('home.homepage'))
+
+    return render_template(title="Delete User")
