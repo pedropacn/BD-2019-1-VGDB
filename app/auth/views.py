@@ -115,7 +115,7 @@ def profile():
     form.first_name.data = user["first_name"]
     form.last_name.data = user["last_name"]
 
-    return render_template('auth/register.html', action="Edit",
+    return render_template('auth/profile.html', action="Edit",
     profile=profile, form=form,
     user=user, title="Profile")
 
