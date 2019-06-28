@@ -14,9 +14,8 @@ class Object:
     labels = ", ".join([k for k in kwargs.keys()])
     values = ", ".join(["'{}'".format(v) for v in kwargs.values()])
     new_obj = "INSERT INTO %s (%s) VALUES (%s)" % (self.table_name, labels, values)
-    print(new_obj)
-    print(self.__db.manip(new_obj, None))
-    
+    # print(new_obj)
+    self.__db.manip(new_obj, None)
     # print("Object created successfully!")
 
   def update(self, id, **kwargs):
@@ -43,9 +42,9 @@ class Object:
     if len(kwargs) == 1:
       query = "".join(["{}='{}'".format(k,v) for k,v in kwargs.items()])
       select_obj = "SELECT * FROM %s WHERE %s" % (self.table_name, query)
-      print(select_obj)
+      # print(select_obj)
       obj = self.__db.query(select_obj).fetchone()
-      print(obj)
+      # print(obj)
       return obj
     else:
       print("Filter falhou.")

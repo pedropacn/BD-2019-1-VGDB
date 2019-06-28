@@ -6,14 +6,14 @@ from app.database.Object import Object
 
 class User(UserMixin, Object):
     """
-    Create an Employee table
+    User class
     """
 
     id = None
     email = None
     username = None
-    first_name =None
-    last_name =None
+    first_name = None
+    last_name = None
     password_hash = None
 
     def __init__(self):
@@ -33,9 +33,10 @@ class User(UserMixin, Object):
 
     def filter_by(self, **kwargs):
       user = super().filter_by(**kwargs)
-      self.id = user['id']
-      self.email = user['email']
-      self.username = user['username']
+      if user:
+        self.id = user['id']
+        self.email = user['email']
+        self.username = user['username']
       return user
     
 

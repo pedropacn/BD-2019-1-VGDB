@@ -50,11 +50,11 @@ def login():
         # the password entered matches the password in the database
         cur = User()
         user = cur.filter_by(email=form.email.data)
-        print(user)
-        print(cur.verify_password(user['password'], form.password.data))
+        # print(user)
+        # print(cur.verify_password(user['password'], form.password.data))
         if user is not None and cur.verify_password(user['password'], form.password.data):
             # log employee in
-            
+            login_user(cur)
 
             # redirect to the dashboard page after login
             return redirect(url_for('dog.index'))
