@@ -38,7 +38,6 @@ class User(UserMixin, Object):
         self.email = user['email']
         self.username = user['username']
       return user
-    
 
 
 # Set up user_loader

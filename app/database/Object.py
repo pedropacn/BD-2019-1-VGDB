@@ -5,8 +5,12 @@ class Object:
       self.__db = db()
       self.table_name = table_name
 
+  def __del__(self):
+    self.__db.close()
+
   def all(self):
-      cursor = self.__db.query("SELECT * FROM %s") % (self.table_name)
+      query = "SELECT * FROM %s" % (self.table_name)
+      cursor = self.__db.query(query)
       # print(cursor.fetchall())
       return cursor.fetchall()
 
