@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema VGDB_bd
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema VGDB_bd
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `VGDB_bd` DEFAULT CHARACTER SET utf8 ;
+USE `VGDB_bd` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`User`
+-- Table `VGDB_bd`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`User` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`User` (
   `idUser` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Nickname` VARCHAR(45) NOT NULL,
@@ -35,9 +35,9 @@ COMMENT = '			';
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Launches`
+-- Table `VGDB_bd`.`Launches`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Launches` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Launches` (
   `idLancamento` INT NOT NULL AUTO_INCREMENT,
   `Date` DATETIME NOT NULL,
   `Country` VARCHAR(45) NOT NULL,
@@ -47,9 +47,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Genres`
+-- Table `VGDB_bd`.`Genres`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Genres` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Genres` (
   `idGenres` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idGenres`),
@@ -59,9 +59,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Series`
+-- Table `VGDB_bd`.`Series`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Series` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Series` (
   `idSerie` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idSerie`),
@@ -71,9 +71,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Games`
+-- Table `VGDB_bd`.`Games`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Games` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Games` (
   `idGames` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Serie_idSerie` INT NOT NULL,
@@ -91,26 +91,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Games` (
   INDEX `fk_Jogo_Serie1_idx` (`Serie_idSerie1` ASC) VISIBLE,
   CONSTRAINT `fk_Jogo_Lancamento1`
     FOREIGN KEY (`Lancamento_idLancamento`)
-    REFERENCES `mydb`.`Launches` (`idLancamento`)
+    REFERENCES `VGDB_bd`.`Launches` (`idLancamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Jogo_Genero1`
     FOREIGN KEY (`Genero_idGenero1`)
-    REFERENCES `mydb`.`Genres` (`idGenres`)
+    REFERENCES `VGDB_bd`.`Genres` (`idGenres`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Jogo_Serie1`
     FOREIGN KEY (`Serie_idSerie1`)
-    REFERENCES `mydb`.`Series` (`idSerie`)
+    REFERENCES `VGDB_bd`.`Series` (`idSerie`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Companies`
+-- Table `VGDB_bd`.`Companies`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Companies` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Companies` (
   `idCompanies` INT NOT NULL AUTO_INCREMENT,
   `nome_social` VARCHAR(45) NOT NULL,
   `HQ_adress` VARCHAR(45) NOT NULL,
@@ -122,9 +122,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Generations`
+-- Table `VGDB_bd`.`Generations`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Generations` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Generations` (
   `idGeracao` INT NOT NULL AUTO_INCREMENT,
   `numero` VARCHAR(45) NOT NULL,
   `Date_init` DATETIME NOT NULL,
@@ -136,9 +136,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Consoles`
+-- Table `VGDB_bd`.`Consoles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Consoles` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Consoles` (
   `idConsoles` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Developer` VARCHAR(45) NOT NULL,
@@ -155,26 +155,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Consoles` (
   INDEX `fk_Console_Empresa1_idx` (`Empresa_idEmpresa` ASC) VISIBLE,
   CONSTRAINT `fk_Console_Lancamento1`
     FOREIGN KEY (`Lancamento_idLancamento`)
-    REFERENCES `mydb`.`Launches` (`idLancamento`)
+    REFERENCES `VGDB_bd`.`Launches` (`idLancamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Console_Geracao1`
     FOREIGN KEY (`Geracao_idGeracao`)
-    REFERENCES `mydb`.`Generations` (`idGeracao`)
+    REFERENCES `VGDB_bd`.`Generations` (`idGeracao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Console_Empresa1`
     FOREIGN KEY (`Empresa_idEmpresa`)
-    REFERENCES `mydb`.`Companies` (`idCompanies`)
+    REFERENCES `VGDB_bd`.`Companies` (`idCompanies`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`developers`
+-- Table `VGDB_bd`.`developers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`developers` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`developers` (
   `idDevelopers` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Birthday` DATETIME NULL,
@@ -186,16 +186,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`developers` (
   INDEX `fk_Proletario_Empresa1_idx` (`Empresa_idEmpresa` ASC) VISIBLE,
   CONSTRAINT `fk_Proletario_Empresa1`
     FOREIGN KEY (`Empresa_idEmpresa`)
-    REFERENCES `mydb`.`Companies` (`idCompanies`)
+    REFERENCES `VGDB_bd`.`Companies` (`idCompanies`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Jogo_has_Usuario`
+-- Table `VGDB_bd`.`Jogo_has_Usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Jogo_has_Usuario` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Jogo_has_Usuario` (
   `Jogo_idJogo` INT NOT NULL,
   `Jogo_Serie_idSerie` INT NOT NULL,
   `Jogo_Genero_idGenero` INT NOT NULL,
@@ -205,21 +205,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Jogo_has_Usuario` (
   INDEX `fk_Jogo_has_Usuario_Jogo1_idx` (`Jogo_idJogo` ASC, `Jogo_Serie_idSerie` ASC, `Jogo_Genero_idGenero` ASC) VISIBLE,
   CONSTRAINT `fk_Jogo_has_Usuario_Jogo1`
     FOREIGN KEY (`Jogo_idJogo` , `Jogo_Serie_idSerie` , `Jogo_Genero_idGenero`)
-    REFERENCES `mydb`.`Games` (`idGames` , `Serie_idSerie` , `Genero_idGenero`)
+    REFERENCES `VGDB_bd`.`Games` (`idGames` , `Serie_idSerie` , `Genero_idGenero`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Jogo_has_Usuario_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `mydb`.`User` (`idUser`)
+    REFERENCES `VGDB_bd`.`User` (`idUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Reviews`
+-- Table `VGDB_bd`.`Reviews`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Reviews` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Reviews` (
   `idReview` INT NOT NULL AUTO_INCREMENT,
   `Score` DECIMAL NOT NULL,
   `Text` LONGTEXT NULL,
@@ -232,21 +232,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Reviews` (
   INDEX `fk_Avaliação_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_Avaliação_Jogo1`
     FOREIGN KEY (`Jogo_idJogo` , `Jogo_Serie_idSerie` , `Jogo_Genero_idGenero`)
-    REFERENCES `mydb`.`Games` (`idGames` , `Serie_idSerie` , `Genero_idGenero`)
+    REFERENCES `VGDB_bd`.`Games` (`idGames` , `Serie_idSerie` , `Genero_idGenero`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Avaliação_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `mydb`.`User` (`idUser`)
+    REFERENCES `VGDB_bd`.`User` (`idUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Empresa_has_Jogo`
+-- Table `VGDB_bd`.`Empresa_has_Jogo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Empresa_has_Jogo` (
+CREATE TABLE IF NOT EXISTS `VGDB_bd`.`Empresa_has_Jogo` (
   `Empresa_idEmpresa` INT NOT NULL,
   `Jogo_idJogo` INT NOT NULL,
   `Jogo_Serie_idSerie` INT NOT NULL,
@@ -256,12 +256,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Empresa_has_Jogo` (
   INDEX `fk_Empresa_has_Jogo_Empresa1_idx` (`Empresa_idEmpresa` ASC) VISIBLE,
   CONSTRAINT `fk_Empresa_has_Jogo_Empresa1`
     FOREIGN KEY (`Empresa_idEmpresa`)
-    REFERENCES `mydb`.`Companies` (`idCompanies`)
+    REFERENCES `VGDB_bd`.`Companies` (`idCompanies`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Empresa_has_Jogo_Jogo1`
     FOREIGN KEY (`Jogo_idJogo` , `Jogo_Serie_idSerie` , `Jogo_Genero_idGenero`)
-    REFERENCES `mydb`.`Games` (`idGames` , `Serie_idSerie` , `Genero_idGenero`)
+    REFERENCES `VGDB_bd`.`Games` (`idGames` , `Serie_idSerie` , `Genero_idGenero`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
