@@ -232,6 +232,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `VGDB_db`.`users_has_games` (
   `users_id` INT NOT NULL,
   `games_id` INT NOT NULL,
+  `hours_played` INT,
   PRIMARY KEY (`users_id`, `games_id`),
   INDEX `fk_users_has_games_games1_idx` (`games_id` ASC) VISIBLE,
   INDEX `fk_users_has_games_users1_idx` (`users_id` ASC) VISIBLE,
