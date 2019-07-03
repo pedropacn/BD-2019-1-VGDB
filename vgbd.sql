@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS genres (
 CREATE TABLE IF NOT EXISTS games (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
-  score_critics DECIMAL NOT NULL,
+  score_critics DECIMAL(5,2) NOT NULL,
   genres_id INT NOT NULL,
   series_id INT NULL,
   PRIMARY KEY (id),
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS generations (
 CREATE TABLE IF NOT EXISTS platforms (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(60) NOT NULL,
-  price DECIMAL NOT NULL,
+  price DECIMAL(5,2) NOT NULL,
   launch_date DATE NULL,
   manufacturer VARCHAR(80) NULL,
   units_sold INT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS releases (
 
 CREATE TABLE IF NOT EXISTS reviews (
   id INT NOT NULL AUTO_INCREMENT,
-  score DECIMAL NOT NULL,
+  score DECIMAL(5,2) NOT NULL,
   description LONGTEXT NOT NULL,
   games_id INT NOT NULL,
   users_id INT NOT NULL,

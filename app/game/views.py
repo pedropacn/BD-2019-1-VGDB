@@ -1,4 +1,6 @@
+import os
 from flask import flash, redirect, render_template, url_for
+from werkzeug.utils import secure_filename
 # from flask_login import login_required
 
 from . import game
@@ -27,12 +29,19 @@ def new():
     form = CreateGame()
     if form.validate_on_submit():
 
+      f = form.art.data
+      filename = secure_filename(f.filename)
+      f.save(os.path.join(
+          app.instance_path, 'photos', filename
+      ))
+
       try:
         game = {
             "name": form.name.data,
             "score_critics": float(form.score_critics.data),
             "genres_id": form.genres_id.data,
             "series_id": form.series_id.data
+            # "art": str(form.art.data.read())
         }
 
         print(game)
