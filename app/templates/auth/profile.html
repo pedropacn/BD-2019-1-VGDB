@@ -1,0 +1,46 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if profile %}
+        Profile
+    {% else %}
+        Register
+    {% endif %}
+{% endblock %}
+{% block body %}
+  <div class="col-sm-6 col-md-5">
+    <div class="content-section">
+      <div class="">
+        <div class="">
+          <div class="inner">
+            <div class="center">
+                <div class="thumbnail">
+                  <img src="..." alt="...">
+                  <div class="caption">
+                    <h3>Profile</h3>
+                    <p>Username: {{user.username}}</p>
+                    <p>Email: {{user.email}}</p>
+                    <p>First Name: {{user.first_name}}</p>
+                    <p>Last Name: {{user.last_name}}</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-7">
+    <div class="content-section">
+      <div class="inner">
+          {% if profile %}
+            <h1>Edit Profile</h1>
+          {% else %}
+            <h1>Register for an account</h1>
+          {% endif %}
+        <br/>
+        {{ wtf.quick_form(form) }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

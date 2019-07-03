@@ -31,7 +31,7 @@ class DatabaseOp:
        self.__cursor.execute(query, params)
        return self.__cursor
 
-  def manip(self, query, params):
+  def manip(self, query, params=None):
       try:
         self.__cursor.execute(query, params)
         self.__connection.commit()
