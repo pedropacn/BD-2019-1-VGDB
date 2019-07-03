@@ -43,4 +43,7 @@ def create_app(config_name):
     from .game import game as game_blueprint
     app.register_blueprint(game_blueprint)
 
+    from .review import review as review_blueprint
+    app.register_blueprint(review_blueprint)
+
     return app
