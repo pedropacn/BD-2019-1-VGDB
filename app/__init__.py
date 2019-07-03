@@ -16,7 +16,7 @@ login_manager = LoginManager()
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object('development')
+    app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
     
     
@@ -42,5 +42,8 @@ def create_app(config_name):
 
     from .game import game as game_blueprint
     app.register_blueprint(game_blueprint)
+
+    from .review import review as review_blueprint
+    app.register_blueprint(review_blueprint)
 
     return app
