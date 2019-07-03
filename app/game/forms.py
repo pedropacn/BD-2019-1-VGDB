@@ -11,5 +11,7 @@ class CreateGame(FlaskForm):
 
     name = StringField('Name', validators=[DataRequired()])
     score_critics = DecimalField('Score', validators=[DataRequired()])
-    genres_id = SelectField('Genre', choices=[(1, 'Plataforma'), (2, 'Terror')], validators=[DataRequired()])
-    series_id = SelectField('Series', choices=[(1, 'Mario'), (2, 'Silent Hill')])
+    genres_id = SelectField('Genre', choices=[('1', 'Plataforma'), ('2', 'Terror')], validators=[DataRequired()])
+    series_id = SelectField('Series', choices=[('1', 'Mario'), ('2', 'Silent Hill')])
+
+    submit = SubmitField('Submit')

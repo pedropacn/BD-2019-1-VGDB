@@ -30,7 +30,7 @@ def new():
       try:
         game = {
             "name": form.name.data,
-            "score_critics": form.score_critics.data,
+            "score_critics": float(form.score_critics.data),
             "genres_id": form.genres_id.data,
             "series_id": form.series_id.data
         }

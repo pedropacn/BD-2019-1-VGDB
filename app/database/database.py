@@ -9,7 +9,7 @@ class DatabaseOp:
 
   def __init__(self):    
     try:
-      self.__connection = mysql.connector.connect(user='root', password='root', database='exemplo')
+      self.__connection = mysql.connector.connect(user='root', password='root', database='vgbd')
       self.__cursor = self.__connection.cursor(dictionary=True)
 
       # Insert new employee

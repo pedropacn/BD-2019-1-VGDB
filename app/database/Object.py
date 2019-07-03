@@ -18,7 +18,7 @@ class Object:
     labels = ", ".join([k for k in kwargs.keys()])
     values = ", ".join(["'{}'".format(v) for v in kwargs.values()])
     new_obj = "INSERT INTO %s (%s) VALUES (%s)" % (self.table_name, labels, values)
-    # print(new_obj)
+    print(new_obj)
     self.__db.manip(new_obj, None)
     # print("Object created successfully!")
 
