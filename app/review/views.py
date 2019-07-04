@@ -29,8 +29,10 @@ def new():
 
       try:
         review = {
-          "name": form.name.data,
-          "age": form.age.data
+          "score": float(form.score.data),
+          "description": form.description.data,
+          "games_id": form.game_id.data,
+          "users_id": form.users_id.data
         }
 
         print(review)
@@ -65,8 +67,10 @@ def edit_review(id):
       print("Cant find review.")
 
     if form.validate_on_submit():
-        review["name"] = form.name.data
-        review["age"] = form.age.data
+        review["score"] = float(form.score.data)
+        review["description"] = form.description.data
+        review["games_id"] = form.game_id.data
+        review["users_id"] = form.users_id.data
         cur.update(**review)
 
         flash('You have successfully edited a review.')
@@ -74,8 +78,10 @@ def edit_review(id):
         # redirect to the departments page
         return redirect(url_for('review.index'))
     
-    form.age.data = review["age"]
-    form.name.data = review["name"]
+    form.score.data = review["score"]
+    form.description.data = review["description"]
+    form.game_id.data = review["games_id"]
+    form.users_id.data = review["users_id"]
     return render_template('review/new.html', action="Edit",
                            add_review=add_review, form=form,
                            review=review, title="Edit Review")

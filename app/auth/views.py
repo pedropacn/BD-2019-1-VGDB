@@ -60,7 +60,7 @@ def login():
             login_user(cur)
 
             # redirect to the dashboard page after login
-            return redirect(url_for('dog.index'))
+            return redirect(url_for('game.index'))
 
         # when login details are incorrect
         else:

@@ -29,25 +29,21 @@ def new():
     form = CreateGame()
     if form.validate_on_submit():
 
-      f = form.art.data
-      filename = secure_filename(f.filename)
-      f.save(os.path.join(
-          app.instance_path, 'photos', filename
-      ))
+      # filename = secure_filename(form.art.data.filename)
+      # form.art.data.save('uploads/' + filename)
 
+      game = {
+          "name": form.name.data,
+          "score_critics": float(form.score_critics.data),
+          "genres_id": form.genres_id.data,
+          "series_id": form.series_id.data,
+          # "art": form.art.data.read()
+      }
+      print(game)
+      new_game = Games()
+      new_game.create(**game)
       try:
-        game = {
-            "name": form.name.data,
-            "score_critics": float(form.score_critics.data),
-            "genres_id": form.genres_id.data,
-            "series_id": form.series_id.data
-            # "art": str(form.art.data.read())
-        }
-
-        print(game)
-        new_game = Games()
-        new_game.create(**game)
-
+        print("hello")
         # add employee to the database
         flash('You have successfully created a Game.')
       except:
@@ -77,9 +73,10 @@ def edit_game(id):
 
     if form.validate_on_submit():
         game["name"] = form.name.data
-        game["score_critics"] = form.score_critics.data
+        game["score_critics"] = float(form.score_critics.data)
         game["genres_id"] = form.genres_id.data
         game["series_id"] = form.series_id.data
+        # game["art"] = form.art.data.read()
         cur.update(**game)
 
         flash('You have successfully edited a game.')

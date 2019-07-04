@@ -19,6 +19,6 @@ class CreateGame(FlaskForm):
     score_critics = DecimalField('Score', validators=[DataRequired()])
     genres_id = SelectField('Genre', choices=[(genre['id'], genre['name']) for genre in genres.all()], validators=[DataRequired()], coerce=int)
     series_id = SelectField('Series', choices=[(serie['id'], serie['name']) for serie in series.all()], coerce=int)
-    art = FileField('Image File', validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
+    # art = FileField('Image File', validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
 
     submit = SubmitField('Submit')
