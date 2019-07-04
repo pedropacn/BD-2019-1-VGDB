@@ -17,7 +17,7 @@ class User(UserMixin, Object):
     password_hash = None
 
     def __init__(self):
-      Object.__init__(self, 'Users')
+      Object.__init__(self, 'users')
 
     def password_hash(self, password):
         """

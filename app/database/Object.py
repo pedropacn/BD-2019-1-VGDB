@@ -1,4 +1,5 @@
 from .database import DatabaseOp as db
+import base64
 
 class Object:
   def __init__(self, table_name):
@@ -18,15 +19,27 @@ class Object:
     labels = ", ".join([k for k in kwargs.keys()])
     values = ", ".join(["'{}'".format(v) for v in kwargs.values()])
     new_obj = "INSERT INTO %s (%s) VALUES (%s)" % (self.table_name, labels, values)
-    # print(new_obj)
+    print(new_obj)
     self.__db.manip(new_obj, None)
     # print("Object created successfully!")
 
   def update(self, id, **kwargs):
     obj = self.select(id)
-    attr = ", ".join(["{}='{}'".format(k,v) for k,v in kwargs.items()])
+    attr = ", ".join(["{}='{}'".format(k,v) for k,v in kwargs.items() if k != 'art'] )
+    if 'art' in kwargs:
+      art = ["{}={}".format(k,v) for k,v in kwargs.items() if k == 'art']
+      art.append(attr)
+      attr = ", ".join(art)
+      print(attr)
     update_obj = "UPDATE %s SET %s WHERE id = %s" % (self.table_name, attr, id)
     # print(update_dog)
+    self.__db.manip(update_obj, None)
+    # print("{} updated successfully!".format(obj))
+
+  def file(self, id, file):
+    change = "art=%s" % file
+    update_obj = "UPDATE %s SET %s WHERE id = %s" % ('games', change, id)
+    print(update_obj)
     self.__db.manip(update_obj, None)
     # print("{} updated successfully!".format(obj))
 
