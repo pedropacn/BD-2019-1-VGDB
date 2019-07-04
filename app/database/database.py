@@ -9,7 +9,7 @@ class DatabaseOp:
 
   def __init__(self):    
     try:
-      self.__connection = mysql.connector.connect(user='root', password='root', database='vgbd')
+      self.__connection = mysql.connector.connect(user='root', password='root', database='vgbd_db')
       self.__cursor = self.__connection.cursor(dictionary=True)
 
       # Insert new employee
@@ -32,12 +32,12 @@ class DatabaseOp:
        return self.__cursor
 
   def manip(self, query, params=None):
-      try:
-        self.__cursor.execute(query, params)
-        self.__connection.commit()
-      except:
-        self.__connection.rollback()
-        print("Rollback!")
+      self.__cursor.execute(query, params)
+      self.__connection.commit()
+      # try:
+      # except:
+      #   self.__connection.rollback()
+      #   print("Rollback!")
 
   def close(self):
       self.__cursor.close()

@@ -1,4 +1,5 @@
 import os
+import base64
 from flask import flash, redirect, render_template, url_for
 from werkzeug.utils import secure_filename
 # from flask_login import login_required
@@ -37,11 +38,12 @@ def new():
           "score_critics": float(form.score_critics.data),
           "genres_id": form.genres_id.data,
           "series_id": form.series_id.data,
-          # "art": form.art.data.read()
+          # "art": base64.b64encode(bytes(str(form.art.data.read()), 'utf-8'))
       }
       print(game)
       new_game = Games()
       new_game.create(**game)
+      # form.art.data.save('../static/images/' + form.art.data.filename)
       try:
         print("hello")
         # add employee to the database
@@ -76,7 +78,8 @@ def edit_game(id):
         game["score_critics"] = float(form.score_critics.data)
         game["genres_id"] = form.genres_id.data
         game["series_id"] = form.series_id.data
-        # game["art"] = form.art.data.read()
+        game["art"] = 'NULL'
+        print(game)
         cur.update(**game)
 
         flash('You have successfully edited a game.')

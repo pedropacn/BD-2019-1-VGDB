@@ -1,5 +1,5 @@
-create database if not exists vgbd;
-use vgbd;
+create database if not exists vgbd_db;
+use vgbd_db;
 -- create table if not exists Dogs (
 --   id integer primary key not null auto_increment,
 --   name varchar(50) not null,
@@ -40,12 +40,12 @@ CREATE TABLE IF NOT EXISTS games (
   FOREIGN KEY (genres_id)
     REFERENCES genres (id)
 );
-ALTER TABLE games ADD COLUMN art BLOB;
+ALTER TABLE games ADD COLUMN art LONGBLOB;
 
 CREATE TABLE IF NOT EXISTS companies (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(80) NOT NULL,
-  adress VARCHAR(100) NOT NULL,
+  address VARCHAR(100) NOT NULL,
   number_employees INT NULL,
   website VARCHAR(60) NULL,
   foundation_date DATE NULL,
@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS companies (
 CREATE TABLE IF NOT EXISTS generations (
   id INT NOT NULL AUTO_INCREMENT,
   number INT NOT NULL,
-  date_init DATE NOT NULL,
-  date_end DATE NULL,
+  date_init YEAR(4) NOT NULL,
+  date_end YEAR(4) NULL,
   PRIMARY KEY (id)
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS developers (
   id INT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(80) NOT NULL,
   last_name VARCHAR(80) NOT NULL,
-  ocupation VARCHAR(100) NOT NULL,
+  occupation VARCHAR(100) NOT NULL,
   nacionality VARCHAR(60) NULL,
   PRIMARY KEY (id)
 );
@@ -157,11 +157,11 @@ CREATE VIEW `dev_by_ocupation` AS
 
 SELECT
 
-  id, name, ocupation
+  id, first_name, last_name, occupation
 
 FROM developers
 
-ORDER BY ocupation ASC LIMIT 100;
+ORDER BY occupation ASC LIMIT 100;
 
 CREATE VIEW `company_age` AS
 

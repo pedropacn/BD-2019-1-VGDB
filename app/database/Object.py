@@ -1,4 +1,5 @@
 from .database import DatabaseOp as db
+import base64
 
 class Object:
   def __init__(self, table_name):
