@@ -1,5 +1,3 @@
-/* app/static/css/style.css */
-
 body,
 html {
   width: 100%;
@@ -79,6 +77,8 @@ p.copyright {
   padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
+  color: #f8f8f8;
+  background: url(../img/intro-bg.jpg) no-repeat center center;
   background-size: cover;
   height: 100%;
 }
@@ -89,9 +89,34 @@ p.copyright {
   padding-bottom: 20%;
 }
 
+.intro-message > h1 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+  font-size: 5em;
+}
+
+.intro-message > h3 {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.topnav {
+  font-size: 14px;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
 .outer {
   display: table;
-  position: absolute;
   height: 70%;
   width: 100%;
 }
