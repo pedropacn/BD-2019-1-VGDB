@@ -1,4 +1,4 @@
-
+///
 CREATE VIEW `most_sold_platform` AS
 
 	SELECT
@@ -8,7 +8,9 @@ CREATE VIEW `most_sold_platform` AS
 	FROM platforms
  
 	ORDER BY units_sold DESC LIMIT 10;
+///
 
+///
 CREATE VIEW `dev_by_ocupation` AS
 
 	SELECT
@@ -18,7 +20,9 @@ CREATE VIEW `dev_by_ocupation` AS
 	FROM developer
  
 	ORDER BY ocupation ASC LIMIT 100;
+///
 
+///
 CREATE VIEW `company_age` AS
 
 	SELECT
@@ -28,7 +32,9 @@ CREATE VIEW `company_age` AS
 	FROM companies
  
 	ORDER BY name DESC LIMIT 50;
+///
 
+///
 CREATE VIEW `best_game` AS
 
 	SELECT
@@ -38,3 +44,4 @@ CREATE VIEW `best_game` AS
 	FROM games
  
 	ORDER BY score_critics DESC LIMIT 50;
+///
